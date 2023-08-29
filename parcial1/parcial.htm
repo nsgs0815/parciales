@@ -49,8 +49,8 @@
             p2_final = []
 
             for(let i = 0; i < p1.length; i++){
-                p1_final.push(vR[i]*p1[i]);
-                p2_final.push(vR[i]*p2[i]);
+                p1_final.push(vR[i+1]+p1[i]);
+                p2_final.push(vR[i+1]+p2[i]);
             }
             
             vSFinal = [];
@@ -58,7 +58,6 @@
             return vSFinal; 
             
         }
-
 
         function operar(punto1,punto2,vTrans1,vTrans2){
             trans1 = strArr2Num(vTrans1,','); // vector 'trans1' es el primer vector de transformacion ingresado por el usuario
@@ -100,7 +99,6 @@
             else if(indi == 'R'){return rotar(vt1[0],vt1[1],vt2)}
             else if(indi == 'T'){return trasladar(vt1[0],vt1[1],vt2)}
         }
-
 
     </script>
 
