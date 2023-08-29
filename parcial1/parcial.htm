@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transformaciones conjuntas</title>
+    <script>
+        function byId(strId){
+            return document.getElementById(strId).value
+        }
+        
+        function strArr2Num(arr,lim){
+            arr = arr.split(lim)
+            newArr = [];  //arreglo vacio
+            arr.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'aon'
+                newArr.push(Number(elem))
+            });
+            return newArr;
+        }
+
+        function trasladar(vO,vt) {
+            vOriginal = p2-p1
+            vTraslacion = strArr2Num(vt,',');
+            vFinal = []
+
+
+            
+
+            
+        }
+
+        function escalar(matrVert,vt) {
+            vTraslacion = strArr2Num(vt,',');
+            mFinal = []
+            
+            for (let i = 0; i<matrVert.length;i++){
+                for (let j = 0; j < matrVert[i].length;j++){
+                    mFinal.push(matrVert[i][j]+vTraslacion[j]);
+                }
+            }
+            
+        }
+
+        function rotar(matrVert,vt) {
+            vTraslacion = strArr2Num(vt,',');
+            mFinal = []
+            
+            for (let i = 0; i<matrVert.length;i++){
+                for (let j = 0; j < matrVert[i].length;j++){
+                    mFinal.push(matrVert[i][j]+vTraslacion[j]);
+                }
+            }
+            
+        }
+
+        function funcion(p1,p2){
+            pp1= strArr2Num(p1,',')
+            pp2= strArr2Num(p2,',')
+            p3 = pp1+pp2
+
+            alert(p3)
+        }
+        
+    </script>
+
+</head>
+<body>
+    <h1>Trasformaciones conjuntas</h1>
+    <p>Vector para transformacion => p1 <input id="p1" size=1/>, p2 <input id="p2" size=1/></p>
+    <p>Transformacion inicial <input id="trans1" size=8/></p>
+    <p>Transformacion final  <input id="trans2" size=8/></p>
+    <p>Vector resultado => p1' = <output id="verTrans1" ></output>, p2' = <output id="verTrans2" ></output></p>
+    <button id = 'procesar' onclick="funcion()">Procesar</button></p>
+</body>
+</html>
