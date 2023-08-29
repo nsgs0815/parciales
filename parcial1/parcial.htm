@@ -20,7 +20,7 @@
             p1_final = []
             p2_final = []
 
-            for(let i = 0; i = p1.length; i++){
+            for(let i = 0; i < p1.length; i++){
                 p1_final.push(vT[i]+p1[i]);
                 p2_final.push(vT[i]+p2[i]);
             }
@@ -34,7 +34,7 @@
             p1_final = []
             p2_final = []
 
-            for(let i = 0; i = p1.length; i++){
+            for(let i = 0; i < p1.length; i++){
                 p1_final.push(vS[i]*p1[i]);
                 p2_final.push(vS[i]*p2[i]);
             }
@@ -45,27 +45,59 @@
         }
 
         function rotar(p1,p2,vR) {
-      
+            p1_final = []
+            p2_final = []
+
+            for(let i = 0; i < p1.length; i++){
+                p1_final.push(vR[i]*p1[i]);
+                p2_final.push(vR[i]*p2[i]);
+            }
+            
+            vSFinal = [];
+            vSFinal.push(p1_final); vSFinal.push(p2_final);
+            return vSFinal; 
             
         }
         
-        function operar(punto1,punto2,vTransformacion){
-            vTransformacion = vTransformacion.split(',');  
-            indicador  = vTransformacion[0];
+        function operar(punto1,punto2,vTrans1,vTrans2){
+            vTrans1 = vTrans1.split(',');  
+            vTrans2 = vTrans2.split(',');  
+            indicador1  = vTrans1[0];
+            indicador2  = vTrans2[0];
 
             p1 = strArr2Num(punto1,',');
             p2 = strArr2Num(punto2,',');
 
-            trans = [] // vector 'trans' es el vector de transformacion ingresado por el usuario
-            vTransformacion.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'trans'
-                trans.push(Number(elem+1))
+            trans1 = [] // vector 'trans1' es el primer vector de transformacion ingresado por el usuario
+            vTrans1.forEach((elem)=>{ 
+                trans1.push(Number(elem+1))
             });
 
-            if(indicador == 'T'){
-                trasladar(p1,p2,trans);
+            trans2 = [] // vector 'trans2' es el segundo vector de transformacion ingresado por el usuario
+            vTrans2.forEach((elem)=>{  
+                trans2.push(Number(elem+1))
+            });
+
+
+            if(indicador1 == 'T'){
+                trasladar(p1,p2,trans1);
+                op2(indicador2,p1,p2,trans2);
+
+            }else if(indicador1 == 'S'){
+                escalar(p1,p2,trans1);
+                op2(indicador2,p1,p2,trans2);
+
+            }else if(indicador1 == 'R'){
+                rotar(p1,p2,trans1);
+                op2(indicador2,p1,p2,trans2);
             }
 
+        }
 
+        function op2 (in,p1,p2,vt){//funcion para segunda transformacion
+            if(in == 'S'){escalar(p1,p2,vt)}
+            else if(in == 'R'){rotar(p1,p2,vt)}
+            else if(in == 'T'){trasladar(p1,p2,vt)}
         }
 
 
@@ -77,7 +109,8 @@
     <p>Vector para transformacion => p1 <input id="p1" size=1/>, p2 <input id="p2" size=1/></p>
     <p>Transformacion inicial <input id="trans1" size=8/></p>
     <p>Transformacion final  <input id="trans2" size=8/></p>
-    <p>Vector resultado => p1' = <output id="verTrans1" ></output>, p2' = <output id="verTrans2" ></output></p>
+    <p>Vector resultado primera transformacion => p1' = <output id="verTrans1" ></output>, p2' = <output id="verTrans2" ></output></p>
+    <p>Vector resultado segunda transformacion => p1' = <output id="verTrans1" ></output>, p2' = <output id="verTrans2" ></output></p>
     <button id = 'procesar' onclick="operar()">Procesar</button></p>
 </body>
 </html>
