@@ -74,33 +74,31 @@
 
             if(indicador1 == 'T'){
                 v1 = trasladar(p1,p2,trans1);
-                v2 = op2(indicador2,p1,p2,trans2);
-                mostrar(v1,v2);
+                v2 = op2(indicador2,v1,trans2);
+                mostrar(v2);
 
             }else if(indicador1 == 'S'){
                 v1 = escalar(p1,p2,trans1);
-                v2 = op2(indicador2,p1,p2,trans2);
-                mostrar(v1,v2);
+                v2 = op2(indicador2,v1,trans2);
+                mostrar(v2);
 
             }else if(indicador1 == 'R'){
                 v1 = rotar(p1,p2,trans1);
-                v2 = op2(indicador2,p1,p2,trans2);
-                mostrar(v1,v2);
+                v2 = op2(indicador2,v1,trans2);
+                mostrar(v2);
             }
 
         }
 
-        function mostrar(v1,v2){
-            document.getElementById('verTrans11').value = v1[0];
-            document.getElementById('verTrans12').value = v1[1];
-            document.getElementById('verTrans21').value = v2[0];
-            document.getElementById('verTrans22').value = v2[1];
+        function mostrar(v2){
+            document.getElementById('verTrans11').value = v2[0];
+            document.getElementById('verTrans12').value = v2[1];
         }
 
-        function op2 (indi,p1,p2,vt){//funcion para segunda transformacion
-            if(indi == 'S'){return escalar(p1,p2,vt)}
-            else if(indi == 'R'){return rotar(p1,p2,vt)}
-            else if(indi == 'T'){return trasladar(p1,p2,vt)}
+        function op2 (indi,vt1,vt2){//funcion para segunda transformacion; 'vt1' es el vector con la primera transformacion; 'vt2' es el vector TRANSFORMADOR para la segunda transformacion
+            if(indi == 'S'){return escalar(vt1[0],vt1[1],vt2)}
+            else if(indi == 'R'){return rotar(vt1[0],vt1[1],vt2)}
+            else if(indi == 'T'){return trasladar(vt1[0],vt1[1],vt2)}
         }
 
 
@@ -112,8 +110,7 @@
     <p>Vector para transformacion => p1 <input id="p1" size=1/>, p2 <input id="p2" size=1/></p>
     <p>Transformacion inicial <input id="trans1" size=8/></p>
     <p>Transformacion final  <input id="trans2" size=8/></p>
-    <p>Vector resultado primera transformacion => p1' = <output id="verTrans11" ></output>, p2' = <output id="verTrans12" ></output></p>
-    <p>Vector resultado segunda transformacion => p1' = <output id="verTrans21" ></output>, p2' = <output id="verTrans22" ></output></p>
+    <p>Vector resultado => p1' = (<output id="verTrans11" ></output>)   p2' = (<output id="verTrans12" ></output>)</p>
     <button id = 'procesar' onclick="operar(byId('p1'),byId('p2'),byId('trans1'),byId('trans2'))">Procesar</button></p>
 </body>
 </html>
