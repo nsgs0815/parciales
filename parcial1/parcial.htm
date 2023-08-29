@@ -16,49 +16,59 @@
             return newArr;
         }
 
-        function trasladar(vO,vt) {
-            vOriginal = p2-p1
-            vTraslacion = strArr2Num(vt,',');
-            vFinal = []
+        function trasladar(p1,p2,vT) {
+            p1_final = []
+            p2_final = []
 
-
-            
-
-            
-        }
-
-        function escalar(matrVert,vt) {
-            vTraslacion = strArr2Num(vt,',');
-            mFinal = []
-            
-            for (let i = 0; i<matrVert.length;i++){
-                for (let j = 0; j < matrVert[i].length;j++){
-                    mFinal.push(matrVert[i][j]+vTraslacion[j]);
-                }
+            for(let i = 0; i = p1.length; i++){
+                p1_final.push(vT[i]+p1[i]);
+                p2_final.push(vT[i]+p2[i]);
             }
             
+            vtras = [];
+            vtras.push(p1_final); vtras.push(p2_final);
+            return vtras;
         }
 
-        function rotar(matrVert,vt) {
-            vTraslacion = strArr2Num(vt,',');
-            mFinal = []
-            
-            for (let i = 0; i<matrVert.length;i++){
-                for (let j = 0; j < matrVert[i].length;j++){
-                    mFinal.push(matrVert[i][j]+vTraslacion[j]);
-                }
+        function escalar(p1,p2,vS) {
+            p1_final = []
+            p2_final = []
+
+            for(let i = 0; i = p1.length; i++){
+                p1_final.push(vS[i]*p1[i]);
+                p2_final.push(vS[i]*p2[i]);
             }
             
+            vSFinal = [];
+            vSFinal.push(p1_final); vSFinal.push(p2_final);
+            return vSFinal;        
         }
 
-        function funcion(p1,p2){
-            pp1= strArr2Num(p1,',')
-            pp2= strArr2Num(p2,',')
-            p3 = pp1+pp2
-
-            alert(p3)
+        function rotar(p1,p2,vR) {
+      
+            
         }
         
+        function operar(punto1,punto2,vTransformacion){
+            vTransformacion = vTransformacion.split(',');  
+            indicador  = vTransformacion[0];
+
+            p1 = strArr2Num(punto1,',');
+            p2 = strArr2Num(punto2,',');
+
+            trans = [] // vector 'trans' es el vector de transformacion ingresado por el usuario
+            vTransformacion.forEach((elem)=>{  //convierte los numeros en string a num y los asigna en el vector 'trans'
+                trans.push(Number(elem+1))
+            });
+
+            if(indicador == 'T'){
+                trasladar(p1,p2,trans);
+            }
+
+
+        }
+
+
     </script>
 
 </head>
@@ -68,6 +78,6 @@
     <p>Transformacion inicial <input id="trans1" size=8/></p>
     <p>Transformacion final  <input id="trans2" size=8/></p>
     <p>Vector resultado => p1' = <output id="verTrans1" ></output>, p2' = <output id="verTrans2" ></output></p>
-    <button id = 'procesar' onclick="funcion()">Procesar</button></p>
+    <button id = 'procesar' onclick="operar()">Procesar</button></p>
 </body>
 </html>
